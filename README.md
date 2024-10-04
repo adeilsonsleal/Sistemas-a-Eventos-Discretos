@@ -28,6 +28,7 @@ _Figura 2: Modelo para os estados._
 ![image](https://github.com/user-attachments/assets/3583d52d-00d1-4d76-afe0-68f7f5075cad)
 
 Para teste e verificação do modelo, as expressões da figura 3 foram verificadas: 
+
 _Figura 3: Testes para o modelo._
 ![image](https://github.com/user-attachments/assets/ae4d1685-7cd0-4127-a78a-f92235017d10)
 
