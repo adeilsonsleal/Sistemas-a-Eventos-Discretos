@@ -33,7 +33,9 @@ _Figura 3: Testes para o modelo._
 ![image](https://github.com/user-attachments/assets/ae4d1685-7cd0-4127-a78a-f92235017d10)
 
 A primeira query:  A[] !(Veiculo1.secao == Veiculo2.secao && Veiculo1.secao != 0), testa se Em todos os estados futuros do sistema, os veículos 1 e 2 não devem estão na mesma seção, exceto na seção 0 - Estacionamento. De modo semelhante o teste é aplicado para as seções subsequentes (2-3 e 1-3).
+
 Na quarta query: A[] Veiculo1.voltas <= 1, é verificado que o Veículo 1 nunca completa mais de 1 volta ao longo de toda a execução do sistema, respeitando sua autonomia de 1 volta. De igual modo para os veículos 2 e 3.
+
 Por fim a condição de não haver deadlock vou verificada: A[] not deadlock, sendo a mesma satisfeita.
 
 Por fim conclui-se que o modelo atende aos requesitos especificados, onde foi possivel modelar um sistema de transporte com 3 veículos e 8 seções com logica temporal. Pode-se verificar a importancia da utilização da ferramenta UPPAAL para a excução do modelo para simular os 3 veículos e as relações temporais.
