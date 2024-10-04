@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan Pronto;
+int Td = 10, Tc = 25; // Td = Tempo de deslocamento entre seções e Tc = Tempo para carregamento/descarregamento
+
+clock Tempo_carregamento, Tempo_deslocamento;
+int s1 =0, s2=0, s4=0, s5=0, s6=0, s7=0, s8=0; // inicialização dos estados das seções: 1 - ocupada; 0 - desocupada;</declaration>
+	<template>
+		<name x="5" y="5">VEICULO</name>
+		<parameter>int n</parameter>
+		<declaration>// Place local declarations here.
+int voltas, secao; // voltas = numero de voltas que cada veículo dá; secao = Seção em que se encotra o veículo;
+</declaration>
+		<location id="id0" x="-340" y="-42">
+			<name x="-349" y="-76">E</name>
+		</location>
+		<location id="id1" x="0" y="-246">
+			<name x="-10" y="-280">S2</name>
+		</location>
+		<location id="id2" x="204" y="-306">
+			<name x="194" y="-340">S3</name>
+		</location>
+		<location id="id3" x="416" y="-246">
+			<name x="406" y="-280">S4</name>
+		</location>
+		<location id="id4" x="544" y="-42">
+			<name x="553" y="-68">S5</name>
+		</location>
+		<location id="id5" x="408" y="170">
+			<name x="383" y="136">S6</name>
+		</location>
+		<location id="id6" x="212" y="221">
+			<name x="202" y="187">S7</name>
+		</location>
+		<location id="id7" x="-8" y="153">
+			<name x="-8" y="119">S8</name>
+		</location>
+		<location id="id8" x="-127" y="-42">
+			<name x="-137" y="-76">S1</name>
+		</location>
+		<init ref="id0"/>
+		<transition id="id9">
+			<source ref="id0"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-221" y="-170">s1 == 0</label>
+			<label kind="synchronisation" x="-314" y="-110">Pronto?</label>
+			<label kind="assignment" x="-212" y="-153">voltas = 0,
+s1 = 1,
+secao=1</label>
+			<nail x="-238" y="-102"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id8"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-306" y="0">voltas==n</label>
+			<label kind="synchronisation" x="-204" y="-8">Pronto?</label>
+			<label kind="assignment" x="-306" y="17">s1=0,
+secao=0</label>
+			<nail x="-229" y="0"/>
+		</transition>
+		<transition id="id11">
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-136" y="42">s1==0</label>
+			<label kind="synchronisation" x="-59" y="34">Pronto?</label>
+			<label kind="assignment" x="-136" y="59">voltas++,
+s1=1,
+s8=0, 
+secao=1</label>
+		</transition>
+		<transition id="id12">
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="guard" x="93" y="102">s8==0</label>
+			<label kind="synchronisation" x="76" y="195">Pronto?</label>
+			<label kind="assignment" x="93" y="119">s8=1,
+s7=0,
+secao=8</label>
+		</transition>
+		<transition id="id13">
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="guard" x="280" y="102">s7==0</label>
+			<label kind="synchronisation" x="314" y="195">Pronto?</label>
+			<label kind="assignment" x="280" y="119">s7=1,
+s6=0,
+secao=7</label>
+		</transition>
+		<transition id="id14">
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="501" y="51">s6==0</label>
+			<label kind="synchronisation" x="408" y="34">Pronto?</label>
+			<label kind="assignment" x="501" y="68">s6=1,
+s5=0, 
+secao=6</label>
+		</transition>
+		<transition id="id15">
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="425" y="-161">s5==0</label>
+			<label kind="synchronisation" x="493" y="-170">Pronto?</label>
+			<label kind="assignment" x="425" y="-144">s5=1,
+s4=0, 
+secao=5</label>
+		</transition>
+		<transition id="id16">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="238" y="-272">s4==0</label>
+			<label kind="synchronisation" x="280" y="-297">Pronto?</label>
+			<label kind="assignment" x="238" y="-255">s4=1,
+s2=0,
+secao=4</label>
+		</transition>
+		<transition id="id17">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="59" y="-297">Pronto?</label>
+			<label kind="assignment" x="93" y="-272">secao=3</label>
+		</transition>
+		<transition id="id18">
+			<source ref="id8"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-34" y="-178">s2==0 &amp;&amp;
+voltas&lt;n</label>
+			<label kind="synchronisation" x="-110" y="-187">Pronto?</label>
+			<label kind="assignment" x="-34" y="-136">s2=1,
+s1=0, 
+secao=2</label>
+		</transition>
+	</template>
+	<template>
+		<name>ESTADOS</name>
+		<location id="id19" x="25" y="-136">
+			<name x="25" y="-170">Pronto_para_carregamento</name>
+		</location>
+		<location id="id20" x="-289" y="-136">
+			<name x="-365" y="-170">Deslocamento</name>
+			<label kind="invariant" x="-459" y="-119">Tempo_deslocamento&lt;=Td</label>
+		</location>
+		<init ref="id20"/>
+		<transition id="id21">
+			<source ref="id19"/>
+			<target ref="id20"/>
+			<label kind="guard" x="-213" y="-77">Tempo_carregamento&gt;=Tc</label>
+			<label kind="synchronisation" x="-153" y="-60">Pronto!</label>
+			<label kind="assignment" x="-204" y="-43">Tempo_deslocamento=0</label>
+			<nail x="-136" y="-77"/>
+		</transition>
+		<transition id="id22">
+			<source ref="id20"/>
+			<target ref="id19"/>
+			<label kind="guard" x="-212" y="-195">Tempo_deslocamento == Td</label>
+			<label kind="assignment" x="-204" y="-178">Tempo_carregamento=0</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Veiculo1:=VEICULO(1);
+Veiculo2:=VEICULO(2);
+Veiculo3:=VEICULO(3);
+estado:=ESTADOS();
+
+
+// List one or more processes to be composed into a system.
+system 
+    Veiculo1, Veiculo2, Veiculo3, estado;
+</system>
+	<queries>
+		<option key="--diagnostic" value="0"/>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+		<query>
+			<formula>A[] !(Veiculo1.secao == Veiculo2.secao &amp;&amp; Veiculo1.secao != 0)
+</formula>
+			<comment>Em todos os estados futuros do sistema, os veículos 1 e 2 não devem estar na mesma seção, exceto na seção 0 - Estacionamento;</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-03 21:43:22 -0300">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A[] !(Veiculo2.secao == Veiculo3.secao &amp;&amp; Veiculo2.secao != 0)</formula>
+			<comment>Em todos os estados futuros do sistema, os veículos 2 e 3 não devem estar na mesma seção, exceto na seção 0 (Estacionamento);</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-03 21:43:48 -0300">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A[] !(Veiculo1.secao == Veiculo3.secao &amp;&amp; Veiculo1.secao != 0)</formula>
+			<comment>Em todos os estados futuros do sistema, os veículos 1 e 3 não devem estar na mesma seção, exceto na seção 0 - Estacionamento;</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-03 21:43:50 -0300">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A[] Veiculo1.voltas &lt;= 1
+
+</formula>
+			<comment>Veículo 1 nunca completa mais de 1 volta ao longo de toda a execução do sistema, respeitando sua autonomia de 1 volta.</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-03 21:44:17 -0300">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A[] Veiculo2.voltas &lt;= 2</formula>
+			<comment>Veículo 2 nunca completa mais de 2 voltas ao longo de toda a execução do sistema, respeitando sua autonomia de 2 volta.</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-03 21:44:28 -0300">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A[] Veiculo3.voltas &lt;= 3</formula>
+			<comment>Veículo 3 nunca completa mais de 3 voltas ao longo de toda a execução do sistema, respeitando sua autonomia de 3 voltas.</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-03 21:44:31 -0300">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula/>
+			<comment>===== Deadlock check =========</comment>
+			<option key="--diagnostic" value="0"/>
+		</query>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-10-03 21:44:38 -0300">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+	</queries>
+</nta>
