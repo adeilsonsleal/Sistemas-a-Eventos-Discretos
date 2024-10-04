@@ -1,5 +1,6 @@
 # Sistemas-a-Eventos-Discretos-PROJETO-02
 Repositório para o Projeto 02 da disciplina Sistemas a Eventos Discretos 2024.1 UFCG
+Equipe: Adeilson, Jackson e Tobias.
 
 ## Sistema de transporte de carga
 
