@@ -40,6 +40,6 @@ Por fim a condição de não haver deadlock vou verificada: A[] not deadlock, se
 
 Por fim conclui-se que o modelo atende aos requesitos especificados, onde foi possivel modelar um sistema de transporte com 3 veículos e 8 seções com logica temporal. Pode-se verificar a importancia da utilização da ferramenta UPPAAL para a excução do modelo para simular os 3 veículos e as relações temporais.
 
-[Aqui](https://youtu.be/pp5NXqMd9fI) é apresentado o vídeo de demonstração.
+[Aqui é apresentado o vídeo de demonstração.](https://youtu.be/pp5NXqMd9fI) 
 
 
